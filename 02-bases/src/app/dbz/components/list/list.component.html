@@ -5,19 +5,22 @@
   let isFirst = first ;
   let isLast = last;
   let isEven = even;
-  let isOdd = odd"
-
-  class="list-group-item" [ngClass]="{
+  let isOdd = odd" class="list-group-item d-flex justify-content-between align-items-center" [ngClass]="{
     'list-group-item-text-primary' : isFirst,
     'list-group-item-dark' : isLast,
 }">
+    <div>
+      <span class="text-primary">{{i+1}}.- </span>
 
-    <span class="text-primary">{{i+1}}.- </span>
+      <span> {{character.name}} - </span>
 
-    <span> {{character.name}} - </span>
+      <strong>Power: </strong>
 
-    <strong>Power: </strong>
+      <span>{{character.power}} </span>
+    </div>
 
-    <span>{{character.power}} </span>
+    <button
+    (click)="onDeleteCharacter(character.id)"
+    class="btn btn-danger "> X </button>
   </li>
 </ul>
