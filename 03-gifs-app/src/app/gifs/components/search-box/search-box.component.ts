@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { GifService } from './gif.service';
 
 @Component({
   selector: 'gifs-search-box',
@@ -6,12 +7,25 @@ import { Component } from '@angular/core';
   <h5>Buscar</h5>
   <input type="text"
   class="form-control"
-  placeholder="Buscar gifs...">
+  placeholder="Buscar gifs..."
+  (keyup.enter)="searchTag()"
+  #txtTagInput>
   `
 })
 
 export class SearchBoxComponent{
-  constructor() { }
 
+  @ViewChild('txtTagInput')
+  public tagInput!: ElementRef<HTMLInputElement>
+
+  constructor (private gifService : GifService) {}
+
+  searchTag(){
+    const newTag = this.tagInput.nativeElement.value;
+    this.gifService.searchTag(newTag);
+
+    this.tagInput.nativeElement.value = '';
+    console.log(newTag);
+  }
 
 }
