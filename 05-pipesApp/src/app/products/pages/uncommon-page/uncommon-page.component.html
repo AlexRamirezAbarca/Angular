@@ -20,7 +20,12 @@
 
   <div class="col-12 md:col-6">
     <p-fieldset legend="i18nPrular Pipe" [toggleable]="true">
-
+      <p>
+        Actualmente {{ clients.length | i18nPlural:clientsMap }}
+      </p>
+      <p-button
+      (click)="deleteClient()"
+      label="Borrar cliente"></p-button>
     </p-fieldset>
 
 
@@ -28,6 +33,20 @@
 
   <div class="col-12 md:col-6">
     <p-fieldset legend="Slice Pipe" [toggleable]="true">
+      <b>Original</b>
+      <pre>{{clients}}</pre>
+
+      <b>slice:0:2</b>
+      <pre>{{clients | slice:0:2}}</pre>
+
+      <b>slice:1:2</b>
+      <pre>{{clients | slice:1:2}}</pre>
+
+      <b>slice:1:3</b>
+      <pre>{{clients | slice:1:3}}</pre>
+
+      <b>slice:3:4</b>
+      <pre>{{clients | slice:3:4}}</pre>
 
     </p-fieldset>
 
@@ -36,7 +55,7 @@
 
   <div class="col-12 md:col-6">
     <p-fieldset legend="Json Pipe" [toggleable]="true">
-
+      <pre> {{ person | json }}</pre>
     </p-fieldset>
 
 
@@ -44,6 +63,13 @@
 
   <div class="col-12 md:col-6">
     <p-fieldset legend="KeyVakue Pipe" [toggleable]="true">
+      <ul>
+        <li *ngFor="let item of person | keyvalue ">
+          <b>{{ item.key | titlecase}}:</b> {{item.value}}
+        </li>
+      </ul>
+
+
 
     </p-fieldset>
 
@@ -52,6 +78,11 @@
 
   <div class="col-12 md:col-6">
     <p-fieldset legend="Async Pipe" [toggleable]="true">
+      <pre *ngIf="!(myObservableTimer | async )">Resolviendo observable</pre>
+      <pre>{{myObservableTimer | async}}</pre>
+
+      <pre *ngIf="!(promisseValue | async )">Resolviendo promesa</pre>
+      <pre>{{promisseValue | async}}</pre>
 
     </p-fieldset>
 
