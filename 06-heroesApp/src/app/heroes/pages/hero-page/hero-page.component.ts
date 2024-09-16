@@ -11,7 +11,7 @@ import { Hero } from '../../interfaces/hero.interface';
 })
 export class HeroPageComponent implements OnInit {
 
-  public hero?: Hero[];
+  public hero?: Hero;
 
 
   constructor(private heroService: HeroeService,
@@ -23,11 +23,17 @@ export class HeroPageComponent implements OnInit {
     this.activatedRoute.params
       .pipe(
         switchMap(({ id }) => this.heroService.getHeroById(id))
-      ).subscribe(hero => {
-        if (!hero) return this.router.navigate(['/heroes.list'])
+      ).subscribe( hero => {
+        if (!hero) return this.router.navigate([ '/heroes.list' ]);
+
         this.hero = hero;
+
         return;
       })
+  }
+
+  goBack(): void{
+    this.router.navigateByUrl('heroes/list')
   }
 
 }

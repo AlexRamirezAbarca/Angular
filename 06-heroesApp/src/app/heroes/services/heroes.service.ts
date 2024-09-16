@@ -6,6 +6,7 @@ import { environments } from '../../../environments/environments';
 
 
 @Injectable({providedIn: 'root'})
+
 export class HeroeService {
 
   private baseUrl: string = environments.baseUrl;
@@ -16,11 +17,15 @@ export class HeroeService {
     return this.http.get<Hero[]>(`${ this.baseUrl }/heroes`)
   }
 
-  getHeroById(id : string) : Observable<Hero[] | undefined>{
-    return this.http.get<Hero[]>(`${ this.baseUrl }/heroes/${id}`)
+  getHeroById(id : string) : Observable<Hero | undefined>{
+    return this.http.get<Hero>(`${ this.baseUrl }/heroes/${id}`)
     .pipe(
       catchError(error => of(undefined))
     );
+  }
+
+  getSuggestions(query : string) : Observable<Hero[]>{
+    return this.http.get<Hero[]>(`/heroes?q=${query}&_limit=6`)
   }
 
 
