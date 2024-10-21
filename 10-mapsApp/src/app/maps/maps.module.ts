@@ -10,6 +10,7 @@ import { PropertiesPageComponent } from './pages/properties-page/properties-page
 import { ZoomRangePageComponent } from './pages/zoom-range-page/zoom-range-page.component';
 
 import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
+import { MiniMapComponent } from './components/mini-map/mini-map.component';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleHJhbWlyZXphIiwiYSI6ImNtMjI4eHF0aDA0bWcyanB5aDlmem5qa3MifQ.W-Bl1CirLOOYhqcQyqLLBw';
 
@@ -20,7 +21,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleHJhbWlyZXphIiwiYSI6ImNtMjI4eHF0aDA0bWcya
     FullScreenPageComponent,
     MarkersPageComponent,
     PropertiesPageComponent,
-    ZoomRangePageComponent
+    ZoomRangePageComponent,
+    MiniMapComponent
   ],
   imports: [
     CommonModule,
